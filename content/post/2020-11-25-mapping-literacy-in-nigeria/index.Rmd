@@ -368,6 +368,7 @@ literacy_map <-
 as.data.frame(literacy) %>% 
   leaflet() %>% 
   setView(lat = 9, lng =8, zoom = 5) %>%
+  addProviderTiles(providers$Stamen.TonerLite) %>%
   addPolygons(data = literacy,
               popup = ~ popup,
               stroke = FALSE,
