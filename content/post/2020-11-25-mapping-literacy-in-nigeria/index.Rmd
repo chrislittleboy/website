@@ -57,7 +57,7 @@ are generalisable despite the presence of more expert opinions!
 
 Happy to answer any questions about the data and code in the comments,
 though I'd better leave the interpretation to those who know what
-they're talking about...
+they're talking about...    
 
 ```{r literacymap, fig.cap = "Percentage of population that are literate. Click on states to view gender and age disaggregation. Source: MICS 2016/17."}
 library(tidyverse)
@@ -368,7 +368,6 @@ literacy_map <-
 as.data.frame(literacy) %>% 
   leaflet() %>% 
   setView(lat = 9, lng =8, zoom = 5) %>%
-  addTiles() %>%
   addPolygons(data = literacy,
               popup = ~ popup,
               stroke = FALSE,
