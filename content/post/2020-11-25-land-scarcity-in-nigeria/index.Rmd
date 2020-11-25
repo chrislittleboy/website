@@ -17,9 +17,7 @@ knitr::opts_chunk$set(knitr::opts_chunk$set(echo = F, eval = T, warning = F, mes
 
 Onto the second post! This shows the results of one chapter of my PhD which I'm currently trying to get published. So there will just be a nice map with a bit of explanation in this post, and not too many spoilers.
 
-``` {r scarcitymap, fig.cap = "Regional land scarcity in Nigeria"}
-knitr::include_graphics("C:/Users/chris/Google Drive/PhD FINAL YEAR/finalphd/figures/scarcity.png")
-```
+![](images/scarcity.png)
 
 These two maps show the area of surplus land (on the left), and the value of surplus land (on the right) for each Local Government Area (LGA) in Nigeria. They show that: 
 
