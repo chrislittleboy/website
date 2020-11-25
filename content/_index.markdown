@@ -2,7 +2,7 @@
 title: Home
 ---
 
-[<img src=""C:\\Users\\chris\\Pictures\\profile2.jpg"" style="float:right">](https://twitter.com/chris_littleboy?lang=en)
+[<img src="C:\\Users\\chris\\Pictures\\profile2.jpg" style="float:right">](https://twitter.com/chris_littleboy?lang=en)
 
 # Chris Littleboy's blog
 
