@@ -1,5 +1,6 @@
 ---
 title: Home
+disable_comments: true
 ---
 
 [](/./_index_files/profile2.jpg)

@@ -3,4 +3,12 @@
 
 <script async src="//yihui.org/js/center-img.js"></script>
 
-{{ template "_internal/disqus.html" . }}
+{{ if not .Params.disable_comments }}
+<script src="https://utteranc.es/client.js"
+        repo="[chrislittleboy/website]"
+        issue-term="title"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+{{ end }}
