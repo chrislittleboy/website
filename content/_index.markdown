@@ -2,7 +2,7 @@
 title: Home
 ---
 
-[<img src=C:\\Users\\chris\\Pictures\\profile2.jpg" style="max-width:15%;min-width:40px;float:right;" alt="Github repo" />](https://twitter.com/chris_littleboy?lang=en)
+[<img src="https://simpleicons.org/icons/github.svg">](https://twitter.com/chris_littleboy?lang=en)
 
 # Chris Littleboy's blog
 
