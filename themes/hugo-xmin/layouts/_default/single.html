@@ -10,13 +10,7 @@
 </main>
 
 {{ if not .Params.disable_comments }}
-<script src="https://utteranc.es/client.js"
-        repo="chrislittleboy/website"
-        issue-term="pathname"
-        theme="github-light"
-        crossorigin="anonymous"
-        async>
-</script>
+{{ template "_internal/disqus.html" . }}
 {{ end }}
 
 {{ partial "footer.html" . }}
