@@ -1,0 +1,391 @@
+---
+title: Mapping literacy in Nigeria
+author: Chris Littleboy
+date: '2020-11-25'
+slug: mapping-literacy-in-nigeria
+categories:
+  - Research
+tags:
+  - Education
+  - Maps
+  - Nigeria
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(knitr::opts_chunk$set(echo = F, eval = T, warning = F, message = F, comment = NA))
+```
+
+I'm beginning this blog as a way of productively procrastinating and
+avoiding the task of formatting my PhD thesis. The
+hope is that it turns into a space for me post short data-driven
+research into various development issues. This post, for example, has
+nothing to do with my research which is in agriculture, land rights and
+agrarian change. But, I found the topic interesting enough to spend a
+few hours making a map, and couldn't find any similar analysis
+elsewhere. So I hope this is interesting and / or useful to any
+potential readers!
+
+The story behind this post is that I was having an argument with a much
+better-informed friend regarding the provision of education in Nigeria.
+My argument was people even in the most rural areas of Nigeria had a
+much higher level of education than is often implied. Her argument, in
+short, was that public provision of primary education in Nigeria has a
+lot of room for improvement. I'm an annoying person to argue with
+because I don't accept an argument without seeing supporting data, and
+quite reasonably nobody brings data to social engagements.
+
+When I got home, I looked briefly for information on the regional
+variation of literacy rates in Nigeria. I couldn't find anything, so
+downloaded the microdata of the latest Multiple Indicator Cluster Survey
+(MICS) for Nigeria collected in 2016/17 https://microdata.worldbank.org/index.php/catalog/3002/study-description. This contains the data of rural
+and urban areas of each of the 36 states in Nigeria. The questionnaire
+asks members of the household if they have attended secondary school. If
+they have, they are assumed literate, and if they have not they are
+asked to read a short sentence. All those who were able to read the
+sentence join those who attended secondary school in the group of
+'literate'. Since we have information on the age and gender of each
+respondent, we can get a sense of literacy rates by age, gender and
+state.
+
+So, I downloaded the data, selected the right variables (literacy, age,
+gender), weighted the responses according to the survey sampling
+procedure, aggregated literacy rates at the state level, downloaded a
+map for Nigeria (<https://gadm.org/>), and created this interactive map
+largely following a procedure found here
+(<https://rpubs.com/castower/choroplethmap>).
+
+Broadly, it shows that I was wrong. Literacy rates are much lower in the
+North than in the South, although they are encouragingly much higher for
+the younger population which shows that things are getting better. I have
+been to Ondo State in South West Nigeria, where literacy is very high.
+So the mistake that I made was in assuming that my personal experiences
+are generalisable despite the presence of more expert opinions!
+
+Happy to answer any questions about the data and code in the comments,
+though I'd better leave the interpretation to those who know what
+they're talking about...
+
+```{r literacymap, fig.cap = "Percentage of population that are literate. Click on states to view gender and age disaggregation. Source: MICS 2016/17."}
+library(tidyverse)
+library(haven)
+library(raster)
+library(sf)
+library(ggplot2)
+library(leaflet)
+library(sjlabelled)
+library(htmltools)
+library(htmlwidgets)
+select <- dplyr::select
+
+
+hh <- read_sav("C:\\Users\\chris\\Downloads\\Nigeria MICS5 Datasets\\Nigeria MICS 2016-17 SPSS Datasets\\hl.sav") %>% 
+  select(HH1, HH2, HH7, hhweight) %>% 
+  mutate(hhid = paste0(HH1, HH2)) %>%
+  select(-HH1, - HH2) %>%
+  rename(state = HH7) %>%
+  distinct()
+
+men <- read_sav("C:\\Users\\chris\\Downloads\\Nigeria MICS5 Datasets\\Nigeria MICS 2016-17 SPSS Datasets\\mn.sav") %>% 
+  select(HH1, HH2, MWB2,MWB7) %>%
+  rename(cluster = HH1, hhid = HH2, age = MWB2, literacy = MWB7) %>%
+  mutate(gender = "Male")
+
+women <- read_sav("C:\\Users\\chris\\Downloads\\Nigeria MICS5 Datasets\\Nigeria MICS 2016-17 SPSS Datasets\\wm.sav") %>%
+  select(HH1, HH2,WB2, WB7,) %>%
+  rename(cluster = HH1, hhid = HH2, age = WB2, literacy = WB7) %>%
+  mutate(gender = "Female")
+
+men1524 <- men %>% 
+  mutate(hhid = paste0(cluster, hhid),
+         literacy = ifelse(is.na(literacy),3,literacy),
+         literacy1 = ifelse(literacy == 1,1,0),
+         literacy2 = ifelse(literacy == 2,1,0),
+         literacy3 = ifelse(literacy == 3,1,0),
+         literacy4 = ifelse(literacy == 4,1,0),
+         literacy5 = ifelse(literacy == 5,1,0)) %>%
+  select(-cluster) %>%
+  left_join(hh) %>%
+  mutate(age = ifelse(age %in% 15:24, "1524",
+               ifelse(age %in% 25:35, "2535",
+               ifelse(age %in% 36:49, "3649","")))) %>%
+  filter(age == "1524") %>%
+  mutate(w3 = literacy3 * hhweight) %>%
+  group_by(state) %>%
+  summarise(sum3 = sum(w3),
+            sumweights = sum(hhweight)
+         ) %>%
+  ungroup() %>%
+  mutate(literate = sum3 / sumweights) %>% 
+  select(state, literate) %>%
+  mutate(age = "1524", gender = "Male")
+
+men2535 <- men %>% 
+  mutate(hhid = paste0(cluster, hhid),
+         literacy = ifelse(is.na(literacy),3,literacy),
+         literacy1 = ifelse(literacy == 1,1,0),
+         literacy2 = ifelse(literacy == 2,1,0),
+         literacy3 = ifelse(literacy == 3,1,0),
+         literacy4 = ifelse(literacy == 4,1,0),
+         literacy5 = ifelse(literacy == 5,1,0)) %>%
+  select(-cluster) %>%
+  left_join(hh) %>%
+  mutate(age = ifelse(age %in% 15:24, "1524",
+                      ifelse(age %in% 25:35, "2535",
+                             ifelse(age %in% 36:49, "3649","")))) %>%
+  filter(age == "2535") %>%
+  mutate(w3 = literacy3 * hhweight) %>%
+  group_by(state) %>%
+  summarise(sum3 = sum(w3),
+    sumweights = sum(hhweight)
+  ) %>%
+  ungroup() %>%
+  mutate(literate = sum3 / sumweights) %>% 
+  select(state, literate) %>%
+  mutate(age = "2535", gender = "Male")
+
+men3649 <- men %>% 
+  mutate(hhid = paste0(cluster, hhid),
+         literacy = ifelse(is.na(literacy),3,literacy),
+         literacy1 = ifelse(literacy == 1,1,0),
+         literacy2 = ifelse(literacy == 2,1,0),
+         literacy3 = ifelse(literacy == 3,1,0),
+         literacy4 = ifelse(literacy == 4,1,0),
+         literacy5 = ifelse(literacy == 5,1,0)) %>%
+  select(-cluster) %>%
+  left_join(hh) %>%
+  mutate(age = ifelse(age %in% 15:24, "1524",
+                      ifelse(age %in% 25:35, "2535",
+                             ifelse(age %in% 36:49, "3649","")))) %>%
+  filter(age == "3649") %>%
+  mutate(w3 = literacy3 * hhweight) %>%
+  group_by(state) %>%
+  summarise(
+    sum3 = sum(w3),
+    sumweights = sum(hhweight)
+  ) %>%
+  ungroup() %>%
+  mutate(literate = sum3 / sumweights) %>% 
+  select(state, literate) %>%
+  mutate(age = "3649", gender = "Male")
+
+mentotal <- men %>% 
+  mutate(hhid = paste0(cluster, hhid),
+         literacy = ifelse(is.na(literacy),3,literacy),
+         literacy1 = ifelse(literacy == 1,1,0),
+         literacy2 = ifelse(literacy == 2,1,0),
+         literacy3 = ifelse(literacy == 3,1,0),
+         literacy4 = ifelse(literacy == 4,1,0),
+         literacy5 = ifelse(literacy == 5,1,0)) %>%
+  select(-cluster) %>%
+  left_join(hh) %>%
+  mutate(age = ifelse(age %in% 15:24, "1524",
+                      ifelse(age %in% 25:35, "2535",
+                             ifelse(age %in% 36:49, "3649","")))) %>%
+  filter(age != "") %>%
+  mutate(w3 = literacy3 * hhweight) %>%
+  group_by(state) %>%
+  summarise(sum3 = sum(w3),
+    sumweights = sum(hhweight)
+  ) %>%
+  ungroup() %>%
+  mutate(literate = sum3 / sumweights) %>% 
+  select(state, literate) %>%
+  mutate(age = "All", gender = "Male")
+
+women1524 <- women %>% 
+  mutate(hhid = paste0(cluster, hhid),
+         literacy = ifelse(is.na(literacy),3,literacy),
+         literacy1 = ifelse(literacy == 1,1,0),
+         literacy2 = ifelse(literacy == 2,1,0),
+         literacy3 = ifelse(literacy == 3,1,0),
+         literacy4 = ifelse(literacy == 4,1,0),
+         literacy5 = ifelse(literacy == 5,1,0)) %>%
+  select(-cluster) %>%
+  left_join(hh) %>%
+  mutate(age = ifelse(age %in% 15:24, "1524",
+                      ifelse(age %in% 25:35, "2535",
+                             ifelse(age %in% 36:49, "3649","")))) %>%
+  filter(age == "1524") %>%
+  mutate(w3 = literacy3 * hhweight) %>%
+  group_by(state) %>%
+  summarise(sum3 = sum(w3),
+            sumweights = sum(hhweight)
+  ) %>%
+  ungroup() %>%
+  mutate(literate = sum3 / sumweights) %>% 
+  select(state, literate) %>%
+  mutate(age = "1524", gender = "Female")
+
+women2535 <- women %>% 
+  mutate(hhid = paste0(cluster, hhid),
+         literacy = ifelse(is.na(literacy),3,literacy),
+         literacy1 = ifelse(literacy == 1,1,0),
+         literacy2 = ifelse(literacy == 2,1,0),
+         literacy3 = ifelse(literacy == 3,1,0),
+         literacy4 = ifelse(literacy == 4,1,0),
+         literacy5 = ifelse(literacy == 5,1,0)) %>%
+  select(-cluster) %>%
+  left_join(hh) %>%
+  mutate(age = ifelse(age %in% 15:24, "1524",
+                      ifelse(age %in% 25:35, "2535",
+                             ifelse(age %in% 36:49, "3649","")))) %>%
+  filter(age == "2535") %>%
+  mutate(w3 = literacy3 * hhweight) %>%
+  group_by(state) %>%
+  summarise(sum3 = sum(w3),
+            sumweights = sum(hhweight)
+  ) %>%
+  ungroup() %>%
+  mutate(literate = sum3 / sumweights) %>% 
+  select(state, literate) %>%
+  mutate(age = "2535", gender = "Female")
+
+women3649 <- women %>% 
+  mutate(hhid = paste0(cluster, hhid),
+         literacy = ifelse(is.na(literacy),3,literacy),
+         literacy1 = ifelse(literacy == 1,1,0),
+         literacy2 = ifelse(literacy == 2,1,0),
+         literacy3 = ifelse(literacy == 3,1,0),
+         literacy4 = ifelse(literacy == 4,1,0),
+         literacy5 = ifelse(literacy == 5,1,0)) %>%
+  select(-cluster) %>%
+  left_join(hh) %>%
+  mutate(age = ifelse(age %in% 15:24, "1524",
+                      ifelse(age %in% 25:35, "2535",
+                             ifelse(age %in% 36:49, "3649","")))) %>%
+  filter(age == "3649") %>%
+  mutate(w3 = literacy3 * hhweight) %>%
+  group_by(state) %>%
+  summarise(
+    sum3 = sum(w3),
+    sumweights = sum(hhweight)
+  ) %>%
+  ungroup() %>%
+  mutate(literate = sum3 / sumweights) %>% 
+  select(state, literate) %>%
+  mutate(age = "3649", gender = "Female")
+
+womentotal <- women %>% 
+  mutate(hhid = paste0(cluster, hhid),
+         literacy = ifelse(is.na(literacy),3,literacy),
+         literacy1 = ifelse(literacy == 1,1,0),
+         literacy2 = ifelse(literacy == 2,1,0),
+         literacy3 = ifelse(literacy == 3,1,0),
+         literacy4 = ifelse(literacy == 4,1,0),
+         literacy5 = ifelse(literacy == 5,1,0)) %>%
+  select(-cluster) %>%
+  left_join(hh) %>%
+  mutate(age = ifelse(age %in% 15:24, "1524",
+                      ifelse(age %in% 25:35, "2535",
+                             ifelse(age %in% 36:49, "3649","")))) %>%
+  filter(age != "") %>%
+  mutate(w3 = literacy3 * hhweight) %>%
+  group_by(state) %>%
+  summarise(sum3 = sum(w3),
+            sumweights = sum(hhweight)
+  ) %>%
+  ungroup() %>%
+  mutate(literate = sum3 / sumweights) %>% 
+  select(state, literate) %>%
+  mutate(age = "All", gender = "Female")
+
+total <- rbind(men,women) %>% 
+  mutate(hhid = paste0(cluster, hhid),
+         literacy = ifelse(is.na(literacy),3,literacy),
+         literacy1 = ifelse(literacy == 1,1,0),
+         literacy2 = ifelse(literacy == 2,1,0),
+         literacy3 = ifelse(literacy == 3,1,0),
+         literacy4 = ifelse(literacy == 4,1,0),
+         literacy5 = ifelse(literacy == 5,1,0)) %>%
+  select(-cluster) %>%
+  left_join(hh) %>%
+  mutate(age = ifelse(age %in% 15:24, "1524",
+                      ifelse(age %in% 25:35, "2535",
+                             ifelse(age %in% 36:49, "3649","")))) %>%
+  filter(age != "") %>%
+  mutate(w3 = literacy3 * hhweight) %>%
+  group_by(state) %>%
+  summarise(sum3 = sum(w3),
+    sumweights = sum(hhweight)) %>%
+  ungroup() %>%
+  mutate(literate = sum3 / sumweights) %>% 
+  select(state, literate) %>%
+  mutate(age = "All", gender = "All")
+
+literacy <- rbind(men1524,men2535,men3649,mentotal,
+                  women1524,women2535,women3649,womentotal,
+                  total)
+state_labels = as_factor(literacy$state) %>% as_character()
+literacy <- literacy %>% drop_labels() %>%
+  mutate(state = state_labels) %>%
+  mutate(state = ifelse(state == "FCT Abuja", "FCT", 
+                 ifelse(state == "Nasarawa", "Nassarawa", state)),
+         literate = round(100 * literate, digits = 0)) 
+
+nigeria <- getData(name = "GADM", country = "NGA", level = 1)
+nigeria <- st_as_sf(nigeria) %>% select(NAME_1) %>% rename(state = NAME_1) %>% 
+  mutate(state = ifelse(state == "Federal Capital Territory", "FCT", state))
+
+literacy <- literacy %>% mutate(genderage = paste0(gender, age, "age")) %>% 
+  select(-age, -gender) %>%
+  pivot_wider(id_cols = state, values_from = literate, names_from = genderage)
+popup <- paste0("<strong>",
+                "State: ",
+                literacy$state, 
+                "\n<strong><br /> Literacy rate: ", 
+                literacy$AllAllage,
+                "%",
+                "\n</strong><br / > Female All: ",
+                literacy$FemaleAllage,
+                "%",
+                "\n</strong><br />Female 15:24: ",
+                literacy$Female1524age,
+                "%",
+                "\n</strong><br />Female 25:35: ",
+                literacy$Female2535age,
+                "%",
+                "\n</strong><br />Female 36:49: ",
+                literacy$Female3649age,
+                "%",
+                "\n<strong> <br />Male All: ",
+                literacy$MaleAllage,
+                "%",
+                "</strong><br />Male 15:24: ", 
+                literacy$Male1524age,
+                "%",
+                "\n</strong><br />Male 25:35: ",
+                literacy$Male2535age,
+                "%",
+                "\n</strong><br />Male 36:49: ",
+                literacy$Male3649age,
+                "%")
+
+literacy$popup <- popup
+
+MapInfo <- tags$p(tags$style("<p {font-size:12px} />"),
+                  tags$b("Percentage of population that are literate, defined as having attended secondary school or able to read a simple sentence. Click on states to view gender and age disaggregation. Source: MICS 2016/17."))
+literacy <- merge(literacy, nigeria) %>% st_as_sf() %>% 
+  st_transform(crs = "+proj=longlat +datum=WGS84") %>%
+  mutate(long = unlist(st_centroid(geometry))[1],
+         lat = unlist(st_centroid(geometry))[2])
+pal <- colorNumeric(palette = "Blues", domain = literacy$AllAllage)
+
+literacy_map <-
+as.data.frame(literacy) %>% 
+  leaflet() %>% 
+  setView(lat = 9, lng =8, zoom = 5) %>%
+  addTiles() %>%
+  addPolygons(data = literacy,
+              popup = ~ popup,
+              stroke = FALSE,
+              smoothFactor = 0,
+              fillOpacity = 0.7,
+              color = ~ pal(literacy$AllAllage)) %>%
+  addLegend("bottomright", 
+            pal = pal, 
+            values = ~ AllAllage,
+            title = "Percentage",
+            opacity = 1)
+
+literacy_map
+```
