@@ -28,17 +28,15 @@ potential readers!
 The story behind this post is that I was having an argument with a much
 better-informed friend regarding the provision of education in Nigeria.
 My argument was people even in the most rural areas of Nigeria had a
-much higher level of education than is often implied. Her argument, in
-short, was that public provision of primary education in Nigeria has a
+much higher level of education than is often implied. Her argument, crudely put, was that public provision of primary education in Nigeria has a
 lot of room for improvement. I'm an annoying person to argue with
 because I don't accept an argument without seeing supporting data, and
 quite reasonably nobody brings data to social engagements.
 
 When I got home, I looked briefly for information on the regional
 variation of literacy rates in Nigeria. I couldn't find anything, so
-downloaded the microdata of the latest Multiple Indicator Cluster Survey
-(MICS) for Nigeria collected in 2016/17 https://microdata.worldbank.org/index.php/catalog/3002/study-description. This contains the data of rural
-and urban areas of each of the 36 states in Nigeria. The questionnaire
+downloaded [the data](https://microdata.worldbank.org/index.php/catalog/3002/study-description) for the latest Multiple Indicator Cluster Survey
+(MICS) for Nigeria which was collected in 2016/17. This contains the data of rural and urban areas of each of the 36 states in Nigeria. The questionnaire
 asks members of the household if they have attended secondary school. If
 they have, they are assumed literate, and if they have not they are
 asked to read a short sentence. All those who were able to read the
@@ -47,12 +45,8 @@ sentence join those who attended secondary school in the group of
 respondent, we can get a sense of literacy rates by age, gender and
 state.
 
-So, I downloaded the data, selected the right variables (literacy, age,
-gender), weighted the responses according to the survey sampling
-procedure, aggregated literacy rates at the state level, downloaded a
-map for Nigeria (<https://gadm.org/>), and created this interactive map
-largely following a procedure found here
-(<https://rpubs.com/castower/choroplethmap>).
+So, I downloaded the data, selected the variables (literacy, age,
+gender), weighted the responses, aggregated literacy rates at the state level, downloaded a [map for Nigeria](<https://gadm.org/>), and created this interactive map largely following a procedure found [here](<https://rpubs.com/castower/choroplethmap>).
 
 Broadly, it shows that I was wrong. Literacy rates are much lower in the
 North than in the South, although they are encouragingly much higher for
