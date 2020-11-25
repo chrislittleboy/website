@@ -3,7 +3,7 @@ title: Home
 disable_comments: true
 ---
 
-<img src="/./_index_files/profile2.jpg" alt="" width="30%"/>
+<img src="/./_index_files/profile2.jpg" alt="" style="max-width:15%;min-width:40px;float:right;"/>
 
 # Chris Littleboy's blog
 
