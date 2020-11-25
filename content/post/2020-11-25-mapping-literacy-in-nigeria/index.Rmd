@@ -356,8 +356,6 @@ popup <- paste0("<strong>",
 
 literacy$popup <- popup
 
-MapInfo <- tags$p(tags$style("<p {font-size:12px} />"),
-                  tags$b("Percentage of population that are literate, defined as having attended secondary school or able to read a simple sentence. Click on states to view gender and age disaggregation. Source: MICS 2016/17."))
 literacy <- merge(literacy, nigeria) %>% st_as_sf() %>% 
   st_transform(crs = "+proj=longlat +datum=WGS84") %>%
   mutate(long = unlist(st_centroid(geometry))[1],

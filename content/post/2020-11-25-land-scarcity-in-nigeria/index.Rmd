@@ -10,3 +10,32 @@ tags:
   - Land
   - GIS
 ---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(knitr::opts_chunk$set(echo = F, eval = T, warning = F, message = F, comment = NA))
+```
+
+Onto the second post! This shows the results of one chapter of my PhD which I'm currently trying to get published. So there will just be a nice map with a bit of explanation in this post, and not too many spoilers.
+
+``` {r scarcitymap, fig.cap = "Regional land scarcity in Nigeria"}
+knitr::include_graphics("C:/Users/chris/Google Drive/PhD FINAL YEAR/finalphd/figures/scarcity.png")
+```
+
+These two maps show the area of surplus land (on the left), and the value of surplus land (on the right) for each Local Government Area (LGA) in Nigeria. They show that: 
+
+1) There isn't much spare land going in most of Nigeria. 
+
+2) This spare land is heavily concentrated in a few regions.
+
+3) Available land is not the same as valuable land. Some land is of lower quality due to different climates and soils.
+
+The remainder of the post explains briefly how these maps fit into my PhD research.
+
+Economists (among others) think that understanding scarcity is important to understanding the world. Scarcity is the basic economic problem. People have infinite wants and limited means. In a finite world where there are only so many resources, everybody cannot have everything.
+To resolve this, [so economists say](https://econ.ucsb.edu/~tedb/Courses/Ec100C/Readings/Demsetz_Property_Rights.pdf), societies develop institutions so that people do not fight so much over scarce resources.
+^[This idea dates back to classical thinkers Locke, Hobbes, Smith and Hume - a topic for a later post...]
+As land becomes more scarce, property becomes more defined (through boundaries), better documented (through land titles), and more productive (through increased investment). My thesis tests whether this narrative explains property institutions in rural Nigeria, concluding that it doesn't. Context-dependent politics and history supersede this evolutionary logic.
+
+For this I needed a way of comparing the levels of scarcity in different parts of Nigeria. Scarcity is, however, remarkably difficult to quantify. The best proxy of rural land scarcity in the [existing literature](https://www.sciencedirect.com/science/article/pii/S0306919214000761) involved measures of Potentially Available Cropland. This is land which is not being used for cultivation at the moment, that could also feasibly be cultivated in the future.
+
+I used this literature as a starting point to model resource scarcity in Nigeria. I conducted an analysis of [land cover](http://www.esa-landcover-cci.org/), [protected areas](https://www.protectedplanet.net/en/thematic-areas/wdpa), [population distribution](https://blogs.worldbank.org/opendata/first-look-facebook-s-high-resolution-population-maps), [potential yields](https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2007GB002947), [crop prices and input costs](https://microdata.worldbank.org/index.php/catalog/3557), to tailor the approach to Nigeria. The maps at the top are the result. 
