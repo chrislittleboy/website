@@ -1,5 +1,5 @@
 baseurl: "https://chrislittleboy.netlify.app/"
-languageCode: "en-us"
+languageCode: "en-gb"
 title: "A minimal Hugo website"
 theme: "hugo-xmin"
 googleAnalytics: ""
