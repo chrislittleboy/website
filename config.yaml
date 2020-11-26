@@ -1,6 +1,6 @@
 baseurl: "https://chrislittleboy.netlify.app/"
 languageCode: "en-gb"
-title: "A minimal Hugo website"
+title: "Chris Littleboy's blog"
 theme: "hugo-xmin"
 googleAnalytics: ""
 disqusShortname: "chrislittleboy"
