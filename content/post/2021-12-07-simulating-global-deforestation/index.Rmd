@@ -1,6 +1,5 @@
 ---
 title: Simulating global deforestation
-author: ''
 date: '2021-12-07'
 slug: simulating-global-deforestation
 categories:
@@ -38,10 +37,12 @@ This has involved setting up the input data for 14,000+ forests by:
 
 - Finding the [location of forest cover](https://lpdaac.usgs.gov/products/mcd12q1v006/) around protected forests;
 
-- Implementing various model adjustments in R and C (a new experience for me!);
+- Implementing various adjustments to the GMSE in R (and in C, a new experience for me!);
 
 And to do:
 
 - Running 14,000 simulations over the Christmas holidays;
 
-- Writing up results and disseminating findings.
+- Writing up results, working out what it means, and telling people about them.
+
+An fun project which will hopefully get some traction!
