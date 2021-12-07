@@ -7,4 +7,4 @@ disable_comments: true
 
 # Chris Littleboy
 
-This website has some information about me, some posts related to my research, and some posts about other topics that I find interesting. A combination of academic marketing and a digital soap box! Everything will be short-form, and I hope you enjoy reading!
+This website has some information about me, some posts related to my research, and some posts about other topics that I find interesting. A combination of academic marketing and a digital soap box! Everything will be short-form, and I hope you enjoy reading.
