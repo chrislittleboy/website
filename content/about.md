@@ -4,7 +4,7 @@ title: About me
 disable_comments: true
 ---
 
-I am a Postdoc at Stirling University starting out on an academic career.
+I am a Postdoc at Stirling University starting out my academic career.
 In my research I use data science to understand interactions between the environment and economic development.
 
 Currently I am building an agent-based model to simulate encroachment on protected forests.
@@ -23,13 +23,13 @@ BMus (2011-2014), Music. *King's College London*.
 
 **Skills**
 
-*Quantitative*: econometrics; cluster analysis; geospatial analysis; agent-based modelling.
+*Quantitative*: econometrics; spatial analysis; cluster analysis; agent-based modelling.
 
 *Qualitative*: international fieldwork experience; CAPI surveys; sampling. 
 
-*Theory*: New Institutional Economics; Property Rights; Game Theory;  Social Ontology.
+*Theory*: new institutional economics; property rights; game theory;  social ontology.
 
-*Other*: Teaching; tutoring; supervision; marking.
+*Other*: teaching; tutoring; supervision; marking.
 
 **Publications and future plans**
 

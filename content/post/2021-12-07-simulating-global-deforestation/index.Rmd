@@ -1,0 +1,47 @@
+---
+title: Simulating global deforestation
+author: ''
+date: '2021-12-07'
+slug: simulating-global-deforestation
+categories:
+  - Research
+tags:
+  - GIS
+  - Land Cover
+  - Population Density
+  - Modelling
+  - Forests
+  - GMSE
+---
+
+I stumbled into a exciting research project after joining the ConFooBio[https://sti-cs.org/confoobio/] team at Stirling University in October 2021.
+It became exciting and topical a few weeks after I began the research, when at COP26 there was an ambitious commitment to end deforestation.
+My work -- developing a model which predicts at a global scale where deforestation will be most acute and how conservation resources might be best spent -- now has new relevance!
+
+Before I joined, the team had developed Generalised Management Strategy Evaluation framework (GMSE[https://cran.r-project.org/web/packages/GMSE/index.html]), an agent-based model to simulate human-environment interactions.
+The model is designed for predicting conservation outcomes where there are potential conflicts of interest between conservation and food security.
+Imagine rare geese which eat farmers' seeds, or forest elephants which trample crops.
+'Managers' try to protect wildlife for conservation while 'users' try to get the best yields.
+Using evolutionary game theory, the model predicts an adaptive strategy for each individual to simulate how these conflicts might resolve under various starting conditions.
+
+During my PhD I worked extensively with land cover and population distribution data.
+There, the goal was to understand how land scarcity impacts property rights and agricultural productivity.
+But as the data is free to access, global in scale, and rarely integrated into research in social/environmental sciences, adapting the GMSE to deforestation seemed a perfect match of my experience and the work of the team. And as of today I'm about half way through!
+
+This has involved setting up the input data for 14,000+ forests by:
+
+- filtering the World Database on Protected Areas ([WDPA](https://www.iucn.org/theme/protected-areas/our-work/world-database-protected-areas)) to only include areas with 30%+ forest cover;
+
+- creating 'buffer' regions 30km outside each protected forest;
+
+- Finding the [location of populations](https://landscan.ornl.gov/) around protected forests;
+
+- Finding the [location of forest cover](https://lpdaac.usgs.gov/products/mcd12q1v006/) around protected forests;
+
+- Implementing various model adjustments in R and C (a new experience for me!);
+
+And to do:
+
+- Running 14,000 simulations over the Christmas holidays;
+
+- Writing up results and disseminating findings.

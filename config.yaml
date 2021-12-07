@@ -1,6 +1,6 @@
 baseurl: "https://chrislittleboy.netlify.app/"
 languageCode: "en-gb"
-title: "Chris Littleboy's blog"
+title: "Chris Littleboy"
 theme: "hugo-xmin"
 googleAnalytics: ""
 disqusShortname: "chrislittleboy"
