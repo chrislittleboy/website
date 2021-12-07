@@ -14,11 +14,11 @@ tags:
   - GMSE
 ---
 
-I stumbled into a exciting research project after joining the ConFooBio[https://sti-cs.org/confoobio/] team at Stirling University in October 2021.
+I stumbled into a exciting research project after joining the [ConFooBio](https://sti-cs.org/confoobio/) team at Stirling University in October 2021.
 It became exciting and topical a few weeks after I began the research, when at COP26 there was an ambitious commitment to end deforestation.
 My work -- developing a model which predicts at a global scale where deforestation will be most acute and how conservation resources might be best spent -- now has new relevance!
 
-Before I joined, the team had developed Generalised Management Strategy Evaluation framework (GMSE[https://cran.r-project.org/web/packages/GMSE/index.html]), an agent-based model to simulate human-environment interactions.
+Before I joined, the team had developed Generalised Management Strategy Evaluation framework ([GMSE](https://cran.r-project.org/web/packages/GMSE/index.html)), an agent-based model to simulate human-environment interactions.
 The model is designed for predicting conservation outcomes where there are potential conflicts of interest between conservation and food security.
 Imagine rare geese which eat farmers' seeds, or forest elephants which trample crops.
 'Managers' try to protect wildlife for conservation while 'users' try to get the best yields.
