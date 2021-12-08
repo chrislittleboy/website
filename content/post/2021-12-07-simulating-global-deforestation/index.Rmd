@@ -1,5 +1,6 @@
 ---
 title: Simulating global deforestation
+author: "Chris Littleboy"
 date: '2021-12-07'
 slug: simulating-global-deforestation
 categories:
