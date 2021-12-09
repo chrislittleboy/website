@@ -32,3 +32,7 @@ In policy, knowing where land is plentiful helps governments to plan infrastruct
 And for theory, we can start to use new quantitative measures to address classic economic questions about how societies evolve in response to scarcity (see Smith, Hume, Marx, Demsetz and North).
 
 My next steps - depending on interest - is to generalise the code used in the article and create an R package so that others can easily compute local land scarcity.
+
+And for those interested - here is a flowchart showing the analysis process!
+
+![](images/flowchart.png)
