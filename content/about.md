@@ -33,11 +33,11 @@ BMus (2011-2014), Music. *King's College London*.
 
 **Publications and future plans**
 
-I have one accepted paper at *Land Use Policy*, see the preprint, the article, and a short summary.
+I have one accepted paper at *Land Use Policy* -- see the preprint, the article, and a short summary.
 
 In the pipeline are one paper from my current role, three further papers from my PhD, and one book.
 - simulating global deforestation;
-- the diversity of land governance systems in Nigeria;
-- assessing agricultural productivity using household survey data;
-- Land governance in Ondo State: learning lessons from failed land titling policy;
+- land tenure in Nigeria;
+- What yield gaps? A comparative productivity analysis;
+- Systematic Land Titling in Ondo State;
 - Land rights, institutions and economic development.
