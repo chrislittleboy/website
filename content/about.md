@@ -23,17 +23,19 @@ BMus (2011-2014), Music. *King's College London*.
 
 **Skills**
 
-*Quantitative*: econometrics; spatial analysis; cluster analysis; agent-based modelling.
+*Quantitative*: GIS, earth observation, econometrics; spatial analysis; cluster analysis; agent-based modelling.
 
 *Qualitative*: international fieldwork experience; CAPI surveys; sampling. 
 
 *Theory*: new institutional economics; property rights; game theory;  social ontology.
 
-*Other*: teaching; tutoring; supervision; marking.
+*Programming*: R (expert); Python; C++; web delopment (html/css/JS with PostgreSQL and PostGIS).
+
+*Other*: teaching; curriculum development; tutoring; supervision; marking.
 
 **Publications and future plans**
 
-I have one accepted paper at *Land Use Policy* -- see the preprint, the article, and a short summary.
+I have one accepted paper at *Land Use Policy* on measuring the scarcity of agricultural land by combining household survey data and earth observation.
 
 In the pipeline are one paper from my current role, three further papers from my PhD, and one book.
 - simulating global deforestation;
