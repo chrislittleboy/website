@@ -11,7 +11,7 @@ As part of the website revival, I thought I'd summarise my favourite books of 20
 
 - Baltasar Gracian,	How to use your enemies
 
-A collection of pithy mantras to live by in a world where not everyone wants the best for you. Pragmatism which reads like a cynical self-help book. Currently sitting by my bedside in the hope I can absorb a few of them to quote. 
+A collection of pithy mantras to live by in a world where not everyone wants the best for you. Pragmatism which reads like a cynical self-help book. Currently sitting by my bedside in the hope I can absorb a few of them to quote at will. 
 
 - Gabriel Garcia Marquez,	Clandestine in Chile
 

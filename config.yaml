@@ -28,7 +28,7 @@ menu:
 
 params:
   description: "A website built through Hugo and blogdown."
-  footer: "[Twitter](https://twitter.com/chris_littleboy)"
+  footer: "[Beacon Project](https://www.thebeaconproject.net/)"
 
 markup:
   goldmark:

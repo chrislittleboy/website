@@ -5,13 +5,8 @@ disable_comments: true
 ---
 
 I am a Postdoc at Stirling University starting out my academic career.
-In my research I use data science to understand interactions between the environment and economic development.
-
-Currently I am building an agent-based model to simulate encroachment on protected forests.
-This is an exciting and topical area of research following the COP26 commitments to end deforestation.
-The model can be used to predict outcomes in the near future for 14,000+ forests across the globe.
-
-During my PhD I researched the influence of land scarcity on land management and agriculture in rural Nigeria.
+I love teaching and research, and work to understand links between natural resources and development.
+Currently I am working on the Beacon Project at the University of Stirling in central Scotland. The project looks at the pros and cons of large dam infrastructure. This is firstly a deep-dive into four case study contexts (India, Brazil, Kazakhstan, and Scotland) and secondly a global comparative analysis of dam impacts using satellite imagery.
 
 **Education**
 
@@ -37,9 +32,15 @@ BMus (2011-2014), Music. *King's College London*.
 
 I have one accepted paper at *Land Use Policy* on measuring the scarcity of agricultural land by combining household survey data and earth observation.
 
-In the pipeline are one paper from my current role, three further papers from my PhD, and one book.
-- simulating global deforestation;
-- land tenure in Nigeria;
-- What yield gaps? A comparative productivity analysis;
-- Systematic Land Titling in Ondo State;
-- Land rights, institutions and economic development.
+Four papers are currently under review, in the system. These are:
+
+- Protecting more forests will not reverse deforestation (Nature Ecology and Evolution);
+- Customary tenure and land reform in Nigeria: theory and reality in policy;
+- damAOI: an R package to define an "Area of Interest" around dams for impact assessment;
+- A seasonal classification system interpolating biome classifications within the year for better temporal aggregation in climate science
+
+In the pipeline for this year is:
+
+- A case study paper on water scarcity and irrigation infrastructure on the Syr Darya river basin, in collaboration with Kazakh researchers.
+- A website to visualize how landscapes change after large dams are built for 320 big dams globally.
+- A paper exploring the drivers between land cover changes following dam construction.
