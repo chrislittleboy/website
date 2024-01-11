@@ -23,7 +23,7 @@ This was the first Murakami novel for me, and I couldn't put it down. Couldn't h
 
 - Haruki Murakami,	Kafka on the Shore
 
-Read this swiftly after the first. More supernatural themes, with lots of cats. Best bit was importance of music, and Oshima the best character.
+Read this swiftly after the first. More supernatural themes, with lots of cats. Oshima was the best character.
 
 - John Fowles,	The Magus
 
