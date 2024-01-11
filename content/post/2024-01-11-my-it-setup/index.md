@@ -1,10 +1,10 @@
 ---
 title: My IT setup
 author: Chris Littleboy
-date: '2024-01-11'
+date: '2023-08-14'
 slug: my-it-setup
-categories: []
-tags: []
+categories: [Research]
+tags: [Technology]
 ---
 I love an IT setup blog, so here is mine!
 I am fully aware that this makes me a bit strange.

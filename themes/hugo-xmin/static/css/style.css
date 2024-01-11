@@ -10,7 +10,7 @@ body {
 .menu li { display: inline-block; }
 .article-meta, .menu a {
   text-decoration: none;
-  background: #f7fffb;
+  background: #5c5f5e;
   padding: 5px;
   border-radius: 5px;
 }
@@ -19,7 +19,7 @@ body {
 footer a { text-decoration: none; }
 hr {
   border-style: dashed;
-  color: #f7fffb;
+  color: #5c5f5e;
 }
 
 /* code */
